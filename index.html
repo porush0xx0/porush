@@ -3,18 +3,102 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Will You Marry Me?</title>
+  <title>Will You Date Me?</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css?family=Pacifico|Montserrat:400,700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #ffb6c1 0%, #ffe4e1 100%);
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      background: rgba(255,255,255,0.9);
+      border-radius: 24px;
+      box-shadow: 0 8px 32px rgba(255,105,180,0.2);
+      padding: 48px 36px;
+      text-align: center;
+      max-width: 350px;
+    }
+    .message {
+      font-family: 'Pacifico', cursive;
+      color: #ff69b4;
+      font-size: 2.5rem;
+      margin-bottom: 0.5em;
+      letter-spacing: 1px;
+    }
+    .subtitle {
+      color: #555;
+      font-size: 1.1rem;
+      margin-bottom: 1.5em;
+    }
+    .proposal {
+      color: #e75480;
+      font-size: 1.6rem;
+      margin-bottom: 2em;
+      font-weight: 700;
+    }
+    #yesBtn {
+      background: linear-gradient(90deg, #ff69b4 0%, #ffb6c1 100%);
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      padding: 0.8em 2.5em;
+      font-size: 1.2rem;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(255,105,180,0.2);
+      transition: transform 0.1s, box-shadow 0.1s;
+    }
+    #yesBtn:hover {
+      transform: scale(1.07);
+      box-shadow: 0 8px 32px rgba(255,105,180,0.3);
+      background: linear-gradient(90deg, #ffb6c1 0%, #ff69b4 100%);
+    }
+    #confetti {
+      position: absolute;
+      left: 0; top: 0; width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 10;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
-    <h1 class="message">Hey [Her Name],</h1>
-    <p class="subtitle">From the moment we met, my world changed. Every laugh, every look, every moment has meant everything to me.</p>
-    <h2 class="proposal">Will you marry me?</h2>
+    <h1 class="message">Hey Hottie,</h1>
+    <p class="subtitle">You are my favourite notification.</p>
+    <h2 class="proposal">Will you date me?</h2>
     <button id="yesBtn">Yes!</button>
     <div id="confetti"></div>
   </div>
-
-  <script src="script.js"></script>
+  <script>
+    // Simple confetti effect on button click
+    document.getElementById('yesBtn').addEventListener('click', function() {
+      const confetti = document.getElementById('confetti');
+      confetti.innerHTML = '';
+      for(let i=0; i<80; i++) {
+        const div = document.createElement('div');
+        div.style.position = 'absolute';
+        div.style.left = Math.random()*100 + 'vw';
+        div.style.top = '-10px';
+        div.style.width = div.style.height = (Math.random()*8+6) + 'px';
+        div.style.background = `hsl(${Math.random()*360},80%,70%)`;
+        div.style.borderRadius = '50%';
+        div.style.opacity = 0.8;
+        div.style.transition = 'top 1.2s cubic-bezier(.23,1.01,.32,1), opacity 1.2s';
+        confetti.appendChild(div);
+        setTimeout(() => {
+          div.style.top = (Math.random()*80+10) + 'vh';
+          div.style.opacity = 0;
+        }, 10);
+        setTimeout(() => div.remove(), 1300);
+      }
+    });
+  </script>
 </body>
 </html>
